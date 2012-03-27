@@ -1,0 +1,14 @@
+body {
+    background: #fff;
+    font: 100.01% "Fontin Sans", Fontin-Sans, "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", Lucida, Verdana, Helvetica, sans-serif;
+    text-align: center;
+}
+#holder {
+    margin: 0 auto;
+    width: 320px;
+    height: 240px;
+}
+p {
+    text-align: center;
+    margin: .5em 2em;
+}
