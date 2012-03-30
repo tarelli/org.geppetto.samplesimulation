@@ -126,10 +126,8 @@ public class SampleSimulationController implements ISimulation {
     				sampleSimulatorService.initialize(this);
     				sampleSimulatorService.startSimulatorCycle();
 
-    				float START_TIME = -30;
-    				float END_TIME = 20;
     				float dt = (float) 0.01;
-    				int steps = (int) ((int) (END_TIME - START_TIME) / dt);
+    				int steps = 10;
     				
     				getSessionContext()._timeConfiguration = new TimeConfiguration(dt, steps, 1);
 
@@ -187,13 +185,12 @@ public class SampleSimulationController implements ISimulation {
 		SessionContext session = (SessionContext)request.getSession().getAttribute(SESSION_CONTEXT_ID);
 		if(session._models!=null)
 		{
-			float START_TIME = -30;
 			// some dictionary for plotting
 			Hashtable<Float, Float> V_by_t = new Hashtable<Float, Float>();
 
 			for(int j = 0; j < session._models.get("0").size(); j++)
 			{
-				V_by_t.put(new Float(j*session._timeConfiguration.getTimeStepLength() + START_TIME), ((HHModel)session._models.get("0").get(j)).getV());
+				V_by_t.put(new Float(j*session._timeConfiguration.getTimeStepLength()), ((HHModel)session._models.get("0").get(j)).getV());
 			}
 
 			
@@ -202,10 +199,10 @@ public class SampleSimulationController implements ISimulation {
 			
 			for (int t = 0; t <  session._models.get("0").size(); t++) {
 				// plot from 0
-				if((t*session._timeConfiguration.getTimeStepLength() + START_TIME) >= 0)
+				if((t*session._timeConfiguration.getTimeStepLength()) >= 0)
 				{
-					xDataset.add(t*session._timeConfiguration.getTimeStepLength() + START_TIME);
-					yDataset.add(V_by_t.get(t*session._timeConfiguration.getTimeStepLength() + START_TIME));
+					xDataset.add(t*session._timeConfiguration.getTimeStepLength());
+					yDataset.add(V_by_t.get(t*session._timeConfiguration.getTimeStepLength()));
 				}
 			}
 			

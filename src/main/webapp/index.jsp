@@ -27,8 +27,10 @@ if (clickedButton != null)
 	function refreshChart(data)
 	{
 		 r.clear();
-		 var lines = r.linechart(10, 10, 300, 220,  [data[0]],[data[1]], { nostroke: false, axis: "0 0 1 1", smooth: true });
-		 lines.lines[0].attr({ stroke: "#4d7804" });
+		 var lines = r.linechart(10, 10, 300, 220,  [data[0],[0,100]],[data[1],[-25,120]], { nostroke: false, axis: "0 0 1 1", smooth: true,colors: [
+		                                                                                                                                            "#4d7804",       
+		                                                                                                                                            "transparent"    // the third line is invisible
+		                                                                                                                                          ] });
 	}
 	
 	function getDataset()
