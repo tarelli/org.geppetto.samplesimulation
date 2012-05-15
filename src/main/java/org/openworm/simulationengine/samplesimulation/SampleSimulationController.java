@@ -127,7 +127,7 @@ public class SampleSimulationController implements ISimulation {
     				sampleSimulatorService.startSimulatorCycle();
 
     				float dt = (float) 0.01;
-    				int steps = 10;
+    				int steps = 100;
     				
     				getSessionContext()._timeConfiguration = new TimeConfiguration(dt, steps, 1);
 
