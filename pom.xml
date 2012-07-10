@@ -250,8 +250,7 @@
 		</repository> 		
 	</repositories>
 	<build>
-               
-		<plugins>
+	   <plugins>
 		
 		<plugin>
                  <groupId>org.apache.maven.plugins</groupId>               
@@ -284,8 +283,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
 				<configuration>
 					<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
+					<warName>${project.groupId}.${project.artifactId}-${project.version}</warName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -303,8 +304,8 @@
 			</plugin>
   
  
-		</plugins>
-		<pluginManagement>
+	  </plugins>
+	<pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.eclipse.m2e</groupId>          
