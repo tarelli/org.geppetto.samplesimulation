@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.openworm.simulationengine.samplesimulation</groupId>
 	<artifactId>org.openworm.simulationengine.samplesimulation</artifactId>
-	<name>myBundleName</name>
+	<name>org.openworm.simulationengine.samplesimulation</name>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
@@ -284,6 +284,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
+					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+					<warName>org.openworm.simulationengine.samplesimulation</warName>
 					<archive>
 						<manifestFile>src/main/webapp/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
