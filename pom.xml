@@ -37,8 +37,8 @@
 			<version>2.1</version>
 		</dependency>
     		<dependency>
-			<groupId>org.openworm.simulationengine</groupId>
-			<artifactId>core</artifactId>
+			<groupId>org.openworm.simulationengine.core</groupId>
+			<artifactId>org.openworm.simulationengine.core</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
