@@ -5,13 +5,20 @@
  * @author giovanni@openworm.org (Giovanni Idili)
  */
 
-var r;
+var plot = null;
+
+var flotOptions = { yaxis: { min: -30, max: 125 }, xaxis: { min: 0, max: 100, show: false }, series: { shadowSize: 0 }, grid: { backgroundColor: { colors: ["#fff", "#eee"] } } };
 
 function refreshChart(data)
-{
-	r.clear();
-	// transparent == the third line is invisible
-	var lines = r.linechart(10, 10, 300, 220,  [data[0],[0,100]],[data[1],[-25,120]], { nostroke: false, axis: "0 0 1 1", smooth: true,colors: ["#4d7804", "transparent"] });
+{	
+	if(data != null){
+		var points = [];
+		for(var i=0; i< data[0].length; i++){ points.push([data[0][i], data[1][i]]); }
+	
+		plot.setData([{data: points, label: "V", color: "#4AA02C"}]);
+		plot.setupGrid();
+        plot.draw();
+	}
 }
 	
 function getDataset()
@@ -46,7 +53,8 @@ function stop() {
 }
 	
 $(document).ready(function(){
-	r= Raphael("holder"), txtattr = { font: "12px sans-serif" };
+	
+	plot = $.plot($("#placeholder"), [{data: [], label: "V", color: "#4AA02C"}], flotOptions);
 	
 	$('#current').change(function(){
 	var e = document.getElementById("current");
