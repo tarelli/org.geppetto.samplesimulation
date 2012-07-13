@@ -1,14 +1,38 @@
 body {
-    background: #fff;
-    font: 100.01% "Fontin Sans", Fontin-Sans, "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", Lucida, Verdana, Helvetica, sans-serif;
-    text-align: center;
+	background-color: #92be23;
+	margin: 0px;
+	margin-top:20px;
+	overflow: hidden;
+	font-family: "Helvetica";
+	font-size: 18px;
+	text-align: center;
+	color:white;
 }
+
+.button {
+	border:0px;
+	width: 142px;
+	height: 33px;
+	margin-right: 10px;
+	background-color: #5E8F22;
+	padding-top: 4px;
+	font-size: 15px;
+	color: white;
+	cursor: pointer;
+}
+
+.button:HOVER {
+	background-color: #456919;
+}
+
+
 #holder {
-    margin: 0 auto;
-    width: 320px;
-    height: 240px;
+	margin: 0 auto;
+	width: 320px;
+	height: 240px;
 }
+
 p {
-    text-align: center;
-    margin: .5em 2em;
+	text-align: center;
+	margin: .5em 2em;
 }
