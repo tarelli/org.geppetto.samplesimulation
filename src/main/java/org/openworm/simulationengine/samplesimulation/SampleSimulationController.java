@@ -37,6 +37,9 @@ public class SampleSimulationController implements ISimulation {
 
 	private static final String SESSION_CONTEXT_ID = "SESSION_CTX_ID";
 	
+	//@Autowired
+	//private SimulationConfig config;
+	
 	@Autowired
 	private ISimulator sampleSimulatorService;
 
@@ -55,7 +58,6 @@ public class SampleSimulationController implements ISimulation {
 		
 		sessionContext._externalCurrent = Float.valueOf((String)request.getParameter("iext"));
 	}
-	
 	
 	class SimulationThread extends Thread implements ISimulationCallbackListener {
 		

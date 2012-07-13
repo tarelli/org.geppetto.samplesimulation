@@ -9,5 +9,16 @@
 	
 	<!-- Scans the impl package for module @Components to install and configure -->
 	<context:component-scan base-package="org.openworm.simulationengine.samplesimulation" />
-		
+	
+	<bean id="config" class="org.openworm.simulationengine.samplesimulation.SimulationConfig">
+        <property name="elemCount" value="30" />
+        <property name="steps" value="100" />
+        <property name="dt" value="0.01" />
+        <property name="samplingPeriod" value="1" />
+        <property name="v" value="-10" />
+        <property name="xm" value="0" />
+        <property name="xn" value="0" />
+        <property name="xh" value="0" />
+    </bean>
+    
 </beans>
