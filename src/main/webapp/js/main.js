@@ -6,7 +6,7 @@
  */
 
 var plot = null;
-
+//show: false, 
 var flotOptions = { yaxis: { min: -30, max: 125 }, xaxis: { min: 0, max: 100, show: false }, series: { shadowSize: 0 }, grid: { backgroundColor: { colors: ["#fff", "#eee"] } } };
 
 function refreshChart(data)
@@ -15,9 +15,9 @@ function refreshChart(data)
 		var points = [];
 		for(var i=0; i< data[0].length; i++){ points.push([data[0][i], data[1][i]]); }
 	
-		plot.setData([{data: points, label: "V", color: "#4AA02C"}]);
+		plot.setData([{data: points, label: "mV", color: "#4AA02C"}]);
 		plot.setupGrid();
-        plot.draw();
+		plot.draw();
 	}
 }
 	
@@ -54,7 +54,7 @@ function stop() {
 	
 $(document).ready(function(){
 	
-	plot = $.plot($("#placeholder"), [{data: [], label: "V", color: "#4AA02C"}], flotOptions);
+	plot = $.plot($("#placeholder"), [{data: [], label: "mV", color: "#4AA02C"}], flotOptions);
 	
 	$('#current').change(function(){
 	var e = document.getElementById("current");
