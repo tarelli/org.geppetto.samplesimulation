@@ -5,18 +5,17 @@
  * @author giovanni@openworm.org (Giovanni Idili)
  */
 
-var plot = null;
-//show: false, 
-var flotOptions = { yaxis: { min: -30, max: 125 }, xaxis: { min: 0, max: 100, show: false }, series: { shadowSize: 0 }, grid: { backgroundColor: { colors: ["#fff", "#eee"] } } };
+var plot = null; 
+var flotOptions = { yaxis: { min: -30, max: 125 }, xaxis: { show: false, min: 0, max: 100 }, series: { shadowSize: 0 }, grid: { backgroundColor: { colors: ["#fff", "#eee"] } } };
 
 function refreshChart(data)
 {	
 	if(data != null){
 		var points = [];
-		for(var i=0; i< data[0].length; i++){ points.push([data[0][i], data[1][i]]); }
+		for(var i=0; i< data[1].length; i++){ points.push([data[0][i], data[1][i]]); }
 	
 		plot.setData([{data: points, label: "mV", color: "#4AA02C"}]);
-		plot.setupGrid();
+		//plot.setupGrid();
 		plot.draw();
 	}
 }
