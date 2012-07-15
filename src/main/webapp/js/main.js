@@ -12,10 +12,14 @@ function refreshChart(data)
 {	
 	if(data != null){
 		var points = [];
-		for(var i=0; i< data[1].length; i++){ points.push([data[0][i], data[1][i]]); }
+		for(var i=0; i< data[1].length; i++){
+			// HACK: altering 1 value in the sequence by a small amount to work around a bug in chrome
+			// NOTE: curious? go read this: http://goo.gl/3BGXi
+			(i == 0) ? points.push([data[0][i], data[1][i] + 0.0001]) : points.push([data[0][i], data[1][i]]); 
+		}
 	
 		plot.setData([{data: points, label: "mV", color: "#4AA02C"}]);
-		//plot.setupGrid();
+		// no need to call plot.setupGrid() because the xaxis viewport is fixed
 		plot.draw();
 	}
 }
