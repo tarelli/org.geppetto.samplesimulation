@@ -16,9 +16,9 @@
         <property name="dt" value="0.01" />
         <property name="samplingPeriod" value="1" />
         <property name="v" value="-10" />
-        <property name="xm" value="0" />
         <property name="xn" value="0" />
-        <property name="xh" value="0" />
+        <property name="xm" value="0" />
+        <property name="xh" value="1" />
     </bean>
     
 </beans>

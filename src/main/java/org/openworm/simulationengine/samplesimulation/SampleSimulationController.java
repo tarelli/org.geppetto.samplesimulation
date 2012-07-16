@@ -37,8 +37,8 @@ public class SampleSimulationController implements ISimulation {
 
 	private static final String SESSION_CONTEXT_ID = "SESSION_CTX_ID";
 	
-	//@Autowired
-	//private SimulationConfig config;
+	@Autowired
+	private SimulationConfig config;
 	
 	@Autowired
 	private ISimulator sampleSimulatorService;
@@ -123,23 +123,20 @@ public class SampleSimulationController implements ISimulation {
     				getSessionContext()._runningCycle=true;
     				
     				logger.debug("start simulation");
-    				int ELEM_COUNT = 30;
+    				int ELEM_COUNT = config.getElemCount();
 
     				sampleSimulatorService.initialize(this);
     				sampleSimulatorService.startSimulatorCycle();
-
-    				float dt = (float) 0.01;
-    				int steps = 100;
     				
-    				getSessionContext()._timeConfiguration = new TimeConfiguration(dt, steps, 1);
+    				getSessionContext()._timeConfiguration = new TimeConfiguration((float) config.getDt(), config.getSteps(), config.getSamplingPeriod());
 
-    				// create the 302 models to be simulated
+    				// create the models to be simulated
     				for (int j = 0; j < ELEM_COUNT; j++) {
     					HHModel modelToSimulate;
     					if(getSessionContext()._models==null)
     					{
     						//initial condition
-    						modelToSimulate=new HHModel(Integer.toString(j),-10, 0, 0, 1, getSessionContext()._externalCurrent);
+    						modelToSimulate=new HHModel(Integer.toString(j), config.getV(), config.getXn(), config.getXm(), config.getXh(), getSessionContext()._externalCurrent);
     					}
     					else
     					{
