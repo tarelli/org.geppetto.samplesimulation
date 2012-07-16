@@ -13,6 +13,7 @@
 	<bean id="config" class="org.openworm.simulationengine.samplesimulation.SimulationConfig">
         <property name="elemCount" value="30" />
         <property name="steps" value="100" />
+        <property name="viewport" value="100" />
         <property name="dt" value="0.01" />
         <property name="samplingPeriod" value="1" />
         <property name="v" value="-10" />

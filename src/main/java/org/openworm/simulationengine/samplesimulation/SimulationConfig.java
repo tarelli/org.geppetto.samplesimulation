@@ -4,6 +4,7 @@ public class SimulationConfig {
 	
 	private int elemCount;
 	private int steps;
+	private int viewport;
 	private float dt;
 	private int samplingPeriod;
 
@@ -24,55 +25,63 @@ public class SimulationConfig {
 		return steps;
 	}
 
-	public void setSteps(int _steps) {
-		this.steps = _steps;
+	public void setSteps(int steps) {
+		this.steps = steps;
+	}
+	
+	public int getViewport() {
+		return viewport;
+	}
+
+	public void setViewport(int viewport) {
+		this.viewport = viewport;
 	}
 
 	public float getDt() {
 		return dt;
 	}
 
-	public void setDt(float _dt) {
-		this.dt = _dt;
+	public void setDt(float dt) {
+		this.dt = dt;
 	}
 
 	public int getSamplingPeriod() {
 		return samplingPeriod;
 	}
 
-	public void setSamplingPeriod(int _samplingPeriod) {
-		this.samplingPeriod = _samplingPeriod;
+	public void setSamplingPeriod(int samplingPeriod) {
+		this.samplingPeriod = samplingPeriod;
 	}
 
 	public float getV() {
 		return v;
 	}
 
-	public void setV(float _v) {
-		this.v = _v;
+	public void setV(float v) {
+		this.v = v;
 	}
 
 	public float getXn() {
 		return xn;
 	}
 
-	public void setXn(float _xn) {
-		this.xn = _xn;
+	public void setXn(float xn) {
+		this.xn = xn;
 	}
 
 	public float getXm() {
 		return xm;
 	}
 
-	public void setXm(float _xm) {
-		this.xm = _xm;
+	public void setXm(float xm) {
+		this.xm = xm;
 	}
 
 	public float getXh() {
 		return xh;
 	}
 
-	public void setXh(float _xh) {
-		this.xh = _xh;
+	public void setXh(float xh) {
+		this.xh = xh;
 	}
 }

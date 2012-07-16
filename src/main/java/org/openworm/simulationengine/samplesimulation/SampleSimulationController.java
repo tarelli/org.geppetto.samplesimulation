@@ -94,7 +94,7 @@ public class SampleSimulationController implements ISimulation {
 
 			if(getSessionContext()._models.containsKey(receivedId))
 			{
-				if(getSessionContext()._models.get(receivedId).size()>10000)
+				if(getSessionContext()._models.get(receivedId).size() > config.getViewport() / config.getDt())
 				{
 					for(int i=0;i<models.size();i++)
 					{
