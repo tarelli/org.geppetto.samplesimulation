@@ -86,7 +86,7 @@ public class SampleSimulationController implements ISimulation {
 		 */
 		private void appendResults(List<IModel> models) 
 		{			
-			String receivedId=models.get(0).getId();
+			String receivedId = models.get(0).getId();
 			if(getSessionContext()._models==null)
 			{
 				getSessionContext()._models=new HashMap<String,List<IModel>>();
@@ -94,14 +94,17 @@ public class SampleSimulationController implements ISimulation {
 
 			if(getSessionContext()._models.containsKey(receivedId))
 			{
-				if(getSessionContext()._models.get(receivedId).size() > config.getViewport() / config.getDt())
+				// check if we have more steps than can be displayed
+				if(getSessionContext()._models.get(receivedId).size() >= config.getViewport() / config.getDt())
 				{
+					// if we have more steps that can be displayed - remove the difference
 					for(int i=0;i<models.size();i++)
 					{
 						getSessionContext()._models.get(receivedId).remove(i);
 					}
 
 				}
+				
 				//add all the timesteps for the model
 				getSessionContext()._models.get(receivedId).addAll(models);
 			}

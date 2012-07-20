@@ -17,7 +17,7 @@ function refreshChart(data)
 			// NOTE: curious? go read this: http://goo.gl/3BGXi
 			(i == 0) ? points.push([data[0][i], data[1][i] + 0.0001]) : points.push([data[0][i], data[1][i]]); 
 		}
-	
+		
 		plot.setData([{data: points, label: "mV", color: "#4AA02C"}]);
 		// no need to call plot.setupGrid() because the xaxis viewport is fixed
 		plot.draw();
