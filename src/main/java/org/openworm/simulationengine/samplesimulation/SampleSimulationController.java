@@ -187,23 +187,16 @@ public class SampleSimulationController implements ISimulation {
 		SessionContext session = (SessionContext)request.getSession().getAttribute(SESSION_CONTEXT_ID);
 		if(session._models!=null)
 		{
-			// some dictionary for plotting
-			Hashtable<Float, Float> V_by_t = new Hashtable<Float, Float>();
-
-			for(int j = 0; j < session._models.get("0").size(); j++)
-			{
-				V_by_t.put(new Float(j*session._timeConfiguration.getTimeStepLength()), ((HHModel)session._models.get("0").get(j)).getV());
-			}
-
 			List<Float> xDataset=new ArrayList<Float>();
 			List<Float> yDataset=new ArrayList<Float>();
 			
-			for (int t = 0; t <  session._models.get("0").size(); t++) {
+			for (int t = 0; t <  session._models.get("0").size(); t++) 
+			{
 				// plot from 0
 				if((t*session._timeConfiguration.getTimeStepLength()) >= 0)
 				{
 					xDataset.add(t*session._timeConfiguration.getTimeStepLength());
-					yDataset.add(V_by_t.get(t*session._timeConfiguration.getTimeStepLength()));
+					yDataset.add(((HHModel)session._models.get("0").get(t)).getV());
 				}
 			}
 			
