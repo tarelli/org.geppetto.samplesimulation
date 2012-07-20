@@ -195,7 +195,6 @@ public class SampleSimulationController implements ISimulation {
 				V_by_t.put(new Float(j*session._timeConfiguration.getTimeStepLength()), ((HHModel)session._models.get("0").get(j)).getV());
 			}
 
-			
 			List<Float> xDataset=new ArrayList<Float>();
 			List<Float> yDataset=new ArrayList<Float>();
 			
@@ -210,48 +209,11 @@ public class SampleSimulationController implements ISimulation {
 			
 			Gson gson = new Gson();
 
-
 			response.setContentType("application/json"); 
 			response.setCharacterEncoding("utf-8"); 
-			String bothJson = "["+gson.toJson(xDataset)+","+gson.toJson(yDataset)+"]"; //Put both objects in an array of 2 elements
+			String bothJson = "[" + gson.toJson(xDataset) + "," + gson.toJson(yDataset)+ "]"; //Put both objects in an array of 2 elements
 			response.getWriter().write(bothJson);
 		}
-	}
-	
-	@RequestMapping(value="/hh0.png", method = RequestMethod.GET)
-	public void renderChart(HttpServletRequest request, String variation, OutputStream stream) throws Exception 
-	{
-//		SessionContext session = (SessionContext)request.getSession().getAttribute(SESSION_CONTEXT_ID);
-//		if(session._models!=null)
-//		{
-//			float START_TIME = -30;
-//			// some dictionary for plotting
-//			Hashtable<Float, Float> V_by_t = new Hashtable<Float, Float>();
-//
-//			for(int j = 0; j < session._models.get("0").size(); j++)
-//			{
-//				V_by_t.put(new Float(j*session._timeConfiguration.getTimeStepLength() + START_TIME), ((HHModel)session._models.get("0").get(j)).getV());
-//			}
-//
-//			// print some sampled charts to make sure we got fine-looking results.
-//			// Plot results
-//			XYSeries series = new XYSeries("HH_Graph");
-//
-//			for (int t = 0; t <  session._models.get("0").size(); t++) {
-//				// plot from 0
-//				if((t*session._timeConfiguration.getTimeStepLength() + START_TIME) >= 0)
-//				{
-//					series.add(t*session._timeConfiguration.getTimeStepLength() + START_TIME, V_by_t.get(t*session._timeConfiguration.getTimeStepLength() + START_TIME));
-//				}
-//			}
-//
-//			// Add the series to your data set
-//			XYSeriesCollection dataset = new XYSeriesCollection();
-//			dataset.addSeries(series);
-//
-//			JFreeChart chart = ChartFactory.createXYLineChart("HH Chart", "time", "Voltage", dataset, PlotOrientation.VERTICAL, true, true, false);
-//			ChartUtilities.writeChartAsPNG(stream, chart, 500, 300);
-//		}
 	}
 
 	/* (non-Javadoc)
