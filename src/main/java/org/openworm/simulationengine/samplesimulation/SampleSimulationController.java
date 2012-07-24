@@ -144,7 +144,7 @@ public class SampleSimulationController implements ISimulation {
     					else
     					{
     						modelToSimulate=(HHModel)getSessionContext()._models.get(Integer.toString(j)).get(getSessionContext()._models.get(Integer.toString(j)).size()-1);
-    						modelToSimulate.setV(getSessionContext()._externalCurrent);
+    						modelToSimulate.setI(getSessionContext()._externalCurrent);
     					}
     					
     					//this is where the simulation hooks up with the solver
