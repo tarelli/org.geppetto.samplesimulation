@@ -14,6 +14,8 @@ public class SessionContext {
 	   //the external current is only temporary stored here, it should be part of the model
 	   public Float _externalCurrent=new Float(0);
 
+	   public int _processedElements = 0;
+	   
 	   public boolean _runningCycle=false;
 	   
 	   public boolean _runSimulation=false;

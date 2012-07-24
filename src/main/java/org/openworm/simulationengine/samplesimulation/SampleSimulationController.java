@@ -102,10 +102,9 @@ public class SampleSimulationController implements ISimulation {
 					{
 						getSessionContext()._models.get(receivedId).remove(i);
 					}
-
 				}
 				
-				//add all the timesteps for the model
+				// add all the timesteps for the model
 				getSessionContext()._models.get(receivedId).addAll(models);
 			}
 			else
@@ -113,7 +112,12 @@ public class SampleSimulationController implements ISimulation {
 				getSessionContext()._models.put(receivedId,models);
 			}
 			
-			getSessionContext()._runningCycle = false;
+			getSessionContext()._processedElements = getSessionContext()._processedElements + 1;
+			
+			// NOTE: this needs to be set only when all the elements have been processed
+			if(getSessionContext()._processedElements == config.getElemCount() - 1){
+				getSessionContext()._runningCycle = false;
+			}
 		}
 		
         public void run() {
@@ -123,7 +127,8 @@ public class SampleSimulationController implements ISimulation {
     		{
     			if(!getSessionContext()._runningCycle)
     			{
-    				getSessionContext()._runningCycle=true;
+    				getSessionContext()._runningCycle = true;
+    				getSessionContext()._processedElements = 0;
     				
     				logger.debug("start simulation");
     				int ELEM_COUNT = config.getElemCount();
