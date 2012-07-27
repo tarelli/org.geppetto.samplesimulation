@@ -95,11 +95,12 @@ public class SampleSimulationController implements ISimulation {
 			if(getSessionContext()._models.containsKey(receivedId))
 			{
 				// check if we have more steps than can be displayed
-				if(getSessionContext()._models.get(receivedId).size() >= config.getViewport() / config.getDt())
+				if(getSessionContext()._models.get(receivedId).size() >= (config.getViewport() / config.getDt())/config.getSamplingPeriod())
 				{
 					// if we have more steps that can be displayed - remove the difference
 					for(int i=0;i<models.size();i++)
 					{
+						// always remove the first - when removing everything gets shifted
 						getSessionContext()._models.get(receivedId).remove(0);
 					}
 				}
@@ -200,7 +201,7 @@ public class SampleSimulationController implements ISimulation {
 				// plot from 0
 				if((t*session._timeConfiguration.getTimeStepLength()) >= 0)
 				{
-					xDataset.add(t*session._timeConfiguration.getTimeStepLength());
+					xDataset.add(t*config.getSamplingPeriod()*session._timeConfiguration.getTimeStepLength());
 					yDataset.add(((HHModel)session._models.get("0").get(t)).getV());
 				}
 			}
