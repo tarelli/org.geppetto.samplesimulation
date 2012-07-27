@@ -100,7 +100,7 @@ public class SampleSimulationController implements ISimulation {
 					// if we have more steps that can be displayed - remove the difference
 					for(int i=0;i<models.size();i++)
 					{
-						getSessionContext()._models.get(receivedId).remove(i);
+						getSessionContext()._models.get(receivedId).remove(0);
 					}
 				}
 				
