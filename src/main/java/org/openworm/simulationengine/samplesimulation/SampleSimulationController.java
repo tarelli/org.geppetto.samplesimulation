@@ -116,7 +116,7 @@ public class SampleSimulationController implements ISimulation {
 			getSessionContext()._processedElements = getSessionContext()._processedElements + 1;
 			
 			// NOTE: this needs to be set only when all the elements have been processed
-			if(getSessionContext()._processedElements == config.getElemCount() - 1){
+			if(getSessionContext()._processedElements == config.getElemCount()){
 				getSessionContext()._runningCycle = false;
 			}
 		}
