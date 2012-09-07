@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="Virgo Web Server (Runtime) v2.1"/>
+  <runtime name="Virgo Runtime"/>
   <fixed facet="jst.web"/>
   <fixed facet="jst.java"/>
   <installed facet="com.springsource.server.bundle" version="1.0"/>
