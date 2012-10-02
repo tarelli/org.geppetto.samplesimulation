@@ -9,5 +9,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/usr/local/virgo-tomcat-server-3.6.0.M01/repository/ext/org.apache.catalina_7.0.29.v201208221210.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

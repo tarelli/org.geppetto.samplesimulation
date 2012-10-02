@@ -12,9 +12,9 @@
 	
 	<bean id="config" class="org.openworm.simulationengine.samplesimulation.SimulationConfig">
         <!-- how many neurons will be simulated in parallel -->
-        <property name="elemCount" value="30" />
+        <property name="elemCount" value="302" />
         <!-- how many steps the GPU will run per cycle before returning results -->
-        <property name="steps" value="100" />
+        <property name="steps" value="1000" />
         <!-- how many ms the viewport will show to the user on the front-end -->
         <!-- NOTE: if this is changed changes on teh js front-end are required to match this value -->
         <property name="viewport" value="100" />
@@ -23,7 +23,7 @@
         <!-- sampling period -->
         <!-- 1: all the intermediate results for the steps are returned and will be plotted -->
         <!-- 2: half the the intermediate results are returned and plotted etc. -->
-        <property name="samplingPeriod" value="1" />
+        <property name="samplingPeriod" value="5" />
               
         <!-- initial conditions for the neurons -->
         <property name="v" value="-10" />
