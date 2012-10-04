@@ -1,130 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-    <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  <context-param>
-    <param-name>contextClass</param-name>
-    <param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
-  </context-param>
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring/*.xml</param-value>
-  </context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.eclipse.virgo.web.dm.ServerOsgiBundleXmlWebApplicationContext</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/*.xml</param-value>
+	</context-param>
 
 
-  <servlet>
-            <servlet-name>chart</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-            <servlet-name>chart</servlet-name>
-            <url-pattern>*.png</url-pattern>
-    </servlet-mapping>   
-    
-	
-		  <servlet>
-            <servlet-name>getDataset</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-            <servlet-name>getDataset</servlet-name>
-            <url-pattern>/getDataset</url-pattern>
-    </servlet-mapping>   
-	
-	  <servlet>
-            <servlet-name>startSimulation</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-            <servlet-name>startSimulation</servlet-name>
-            <url-pattern>/startSimulation</url-pattern>
-    </servlet-mapping>   
-    
-	  <servlet>
-            <servlet-name>stopSimulation</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-            <servlet-name>stopSimulation</servlet-name>
-            <url-pattern>/stopSimulation</url-pattern>
-    </servlet-mapping>   
-    
-	  <servlet>
-            <servlet-name>setCurrent</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-            <servlet-name>setCurrent</servlet-name>
-            <url-pattern>/setCurrent</url-pattern>
-    </servlet-mapping>   
-    
-	
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  
-  
-  <servlet>
-    <servlet-name>TestServlet</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.TestServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TestServlet</servlet-name>
-    <url-pattern>/TestServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ChatWebSocketServlet</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatWebSocketServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ChatWebSocketServlet</servlet-name>
-    <url-pattern>/ChatWebSocketServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>EchoStream</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoStream</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EchoStream</servlet-name>
-    <url-pattern>/EchoStream</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>EchoMessage</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoMessage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EchoMessage</servlet-name>
-    <url-pattern>/EchoMessage</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>SnakeWebSocketServlet</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.SnakeWebSocketServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SnakeWebSocketServlet</servlet-name>
-    <url-pattern>/SnakeWebSocketServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ChatServlet</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ChatServlet</servlet-name>
-    <url-pattern>/ChatServlet</url-pattern>
-  </servlet-mapping>
-    <servlet>
-    <servlet-name>SimulationServlet</servlet-name>
-    <servlet-class>org.openworm.simulationengine.samplesimulation.SimulationServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SimulationServlet</servlet-name>
-    <url-pattern>/SimulationServlet</url-pattern>
-  </servlet-mapping>
-  
+	<servlet>
+		<servlet-name>chart</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>chart</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>getDataset</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getDataset</servlet-name>
+		<url-pattern>/getDataset</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>startSimulation</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>startSimulation</servlet-name>
+		<url-pattern>/startSimulation</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>stopSimulation</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stopSimulation</servlet-name>
+		<url-pattern>/stopSimulation</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>setCurrent</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>setCurrent</servlet-name>
+		<url-pattern>/setCurrent</url-pattern>
+	</servlet-mapping>
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/TestServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ChatWebSocketServlet</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatWebSocketServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChatWebSocketServlet</servlet-name>
+		<url-pattern>/ChatWebSocketServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EchoStream</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoStream</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EchoStream</servlet-name>
+		<url-pattern>/EchoStream</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>EchoMessage</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoMessage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EchoMessage</servlet-name>
+		<url-pattern>/EchoMessage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SnakeWebSocketServlet</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.SnakeWebSocketServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SnakeWebSocketServlet</servlet-name>
+		<url-pattern>/SnakeWebSocketServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ChatServlet</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChatServlet</servlet-name>
+		<url-pattern>/ChatServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SimulationServlet</servlet-name>
+		<servlet-class>org.openworm.simulationengine.samplesimulation.SimulationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimulationServlet</servlet-name>
+		<url-pattern>/SimulationServlet</url-pattern>
+	</servlet-mapping>
+
 </web-app>
