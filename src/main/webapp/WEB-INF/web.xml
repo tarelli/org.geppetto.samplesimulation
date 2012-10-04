@@ -68,4 +68,54 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.TestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChatWebSocketServlet</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatWebSocketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatWebSocketServlet</servlet-name>
+    <url-pattern>/ChatWebSocketServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EchoStream</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoStream</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EchoStream</servlet-name>
+    <url-pattern>/EchoStream</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EchoMessage</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.EchoMessage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EchoMessage</servlet-name>
+    <url-pattern>/EchoMessage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SnakeWebSocketServlet</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.SnakeWebSocketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SnakeWebSocketServlet</servlet-name>
+    <url-pattern>/SnakeWebSocketServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChatServlet</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.websockets.ChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatServlet</servlet-name>
+    <url-pattern>/ChatServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
