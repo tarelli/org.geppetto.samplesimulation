@@ -118,4 +118,13 @@
     <servlet-name>ChatServlet</servlet-name>
     <url-pattern>/ChatServlet</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>SimulationServlet</servlet-name>
+    <servlet-class>org.openworm.simulationengine.samplesimulation.SimulationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimulationServlet</servlet-name>
+    <url-pattern>/SimulationServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
