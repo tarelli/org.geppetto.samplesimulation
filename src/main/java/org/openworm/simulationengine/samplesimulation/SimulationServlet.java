@@ -22,22 +22,27 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.apache.catalina.websocket.WsOutbound;
 import org.openworm.simulationengine.core.model.HHModel;
 import org.openworm.simulationengine.core.simulator.ISimulator;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
-
+@Configurable(autowire=Autowire.BY_TYPE)
 public class SimulationServlet extends WebSocketServlet {
+	
+	@Autowired
+	public SimulationConfig config;
+	
+	@Autowired
+	public ISimulator sampleSimulatorService;
 
 	private static final long serialVersionUID = 1L;
 
 	private static final long UPDATE_CYCLE = 100;
 
-
-
-	private final Timer _simTimer = new Timer(
-			SimulationServlet.class.getSimpleName() + " Timer");
+	private final Timer _simTimer = new Timer(SimulationServlet.class.getSimpleName() + " Timer");
 
 	private final AtomicInteger _connectionIds = new AtomicInteger(0);
 
@@ -46,8 +51,7 @@ public class SimulationServlet extends WebSocketServlet {
 	private final ConcurrentHashMap<Integer, SimDataInbound> _connections = new ConcurrentHashMap<Integer, SimDataInbound>();
 
 	@Override
-	protected StreamInbound createWebSocketInbound(String subProtocol,
-			HttpServletRequest request) {
+	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request) {
 		return new SimDataInbound(_connectionIds.incrementAndGet());
 	}
 
@@ -61,18 +65,15 @@ public class SimulationServlet extends WebSocketServlet {
 				try {
 					update();
 				} catch (RuntimeException e) {
-					// log.error("Caught to prevent timer from shutting down",
-					// e);
+					// log.error("Caught to prevent timer from shutting down", e);
 				}
 			}
 		}, UPDATE_CYCLE, UPDATE_CYCLE);
-
 	}
 
 	private void update() {
 		StringBuilder sb = new StringBuilder();
-		for (Iterator<SessionContext> iterator = getSimulations().iterator(); iterator
-				.hasNext();) {
+		for (Iterator<SessionContext> iterator = getSimulations().iterator(); iterator.hasNext();) {
 			SessionContext simulation = iterator.next();
 
 			if (simulation._models != null) {
@@ -82,18 +83,14 @@ public class SimulationServlet extends WebSocketServlet {
 				for (int t = 0; t < simulation._models.get("0").size(); t++) {
 					// plot from 0
 					if ((t * simulation._timeConfiguration.getTimeStepLength()) >= 0) {
-						xDataset.add(t
-								* SampleSimulationController.config.getSamplingPeriod()
-								* simulation._timeConfiguration
-										.getTimeStepLength());
-						yDataset.add(((HHModel) simulation._models.get("0")
-								.get(t)).getV());
+						xDataset.add(t * config.getSamplingPeriod() * simulation._timeConfiguration.getTimeStepLength());
+						yDataset.add(((HHModel) simulation._models.get("0").get(t)).getV());
 					}
 				}
 
 				Gson gson = new Gson();
 				sb.append("[" + gson.toJson(xDataset) + ","
-						+ gson.toJson(yDataset) + "]"); // Put both objects in n
+							  + gson.toJson(yDataset) + "]"); // Put both objects in n
 														// array of 2 elements
 
 			}
@@ -102,9 +99,8 @@ public class SimulationServlet extends WebSocketServlet {
 				sb.append(',');
 			}
 		}
-		// sendUpdate(String.format("{'type': 'update', 'data' : [%s]}",
+		
 		sendUpdate(sb.toString());
-
 	}
 
 	private void sendUpdate(String message) {
@@ -143,7 +139,6 @@ public class SimulationServlet extends WebSocketServlet {
 			_connections.put(Integer.valueOf(id), this);
 			// tentative support for multiple connections but we'll have to see
 			// how the osgi services can be instantiated
-
 		}
 
 		@Override
@@ -154,15 +149,14 @@ public class SimulationServlet extends WebSocketServlet {
 
 		@Override
 		protected void onBinaryMessage(ByteBuffer message) throws IOException {
-			throw new UnsupportedOperationException(
-					"Binary message not supported.");
+			throw new UnsupportedOperationException("Binary message not supported.");
 		}
 
 		@Override
 		protected void onTextMessage(CharBuffer message) throws IOException {
 			String msg = message.toString();
 			if (msg.equals("start")) {
-				new SimulationThread(_sessionContext).start();
+				new SimulationThread(_sessionContext, config, sampleSimulatorService).start();
 			} else if (msg.equals("stop")) {
 				_sessionContext._runSimulation = false;
 				_sessionContext._runningCycle = false;
