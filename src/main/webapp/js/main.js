@@ -58,7 +58,7 @@
             Simulation.socket.onmessage = function (message) {
                 // _Potential_ security hole, consider using json lib to parse
 				// data in production.
-            	refreshChart(message.data);// MC: JUST WROTE THIS HAS TO BE TRIED
+            	refreshChart(eval(message.data));// MC: JUST WROTE THIS HAS TO BE TRIED
 										// OUT
                 };
         });

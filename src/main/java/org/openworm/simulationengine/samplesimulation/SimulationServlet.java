@@ -96,9 +96,10 @@ public class SimulationServlet extends WebSocketServlet {
 
 			}
 
-			if (iterator.hasNext()) {
-				sb.append(',');
-			}
+//
+//			if (iterator.hasNext()) {
+//				sb.append(',');
+//			}
 		}
 		
 		sendUpdate(sb.toString());
