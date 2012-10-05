@@ -13,6 +13,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +26,7 @@ import org.openworm.simulationengine.core.simulator.ISimulator;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.gson.Gson;
 
@@ -58,7 +59,7 @@ public class SimulationServlet extends WebSocketServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		super.init();
+	    SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 		_simTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
