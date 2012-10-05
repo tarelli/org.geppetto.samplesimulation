@@ -40,12 +40,7 @@ Simulation.connect = (function(host) {
 	}
 
 	Simulation.socket.onopen = function() {
-		// Socket open.. start the game loop.
 		Console.log('Info: WebSocket connection opened.');
-		setInterval(function() {
-			// Prevent server read timeout.
-			Simulation.socket.send('ping');
-		}, 5000);
 	};
 
 	Simulation.socket.onclose = function() {

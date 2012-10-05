@@ -41,7 +41,7 @@ public class SimulationServlet extends WebSocketServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final long UPDATE_CYCLE = 500;
+	private static final long UPDATE_CYCLE = 200;
 
 	private final Timer _simTimer = new Timer(SimulationServlet.class.getSimpleName() + " Timer");
 
