@@ -25,6 +25,10 @@ body {
 	background-color: #456919;
 }
 
+.button:disabled{
+	background-color: #333333;
+}
+
 
 #holder {
 	margin: 0 auto;
