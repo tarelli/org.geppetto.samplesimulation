@@ -22,14 +22,11 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.apache.catalina.websocket.WsOutbound;
 import org.openworm.simulationengine.core.model.HHModel;
 import org.openworm.simulationengine.core.simulator.ISimulator;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.gson.Gson;
 
-@Configurable(autowire=Autowire.BY_TYPE)
 public class SimulationServlet extends WebSocketServlet {
 	
 	@Autowired
