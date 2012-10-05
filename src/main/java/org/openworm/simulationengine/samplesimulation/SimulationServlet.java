@@ -13,7 +13,6 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,7 +40,7 @@ public class SimulationServlet extends WebSocketServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final long UPDATE_CYCLE = 200;
+	private static final long UPDATE_CYCLE = 100;
 
 	private final Timer _simTimer = new Timer(SimulationServlet.class.getSimpleName() + " Timer");
 
