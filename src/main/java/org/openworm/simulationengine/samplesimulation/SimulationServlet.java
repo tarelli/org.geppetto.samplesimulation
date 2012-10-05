@@ -86,16 +86,9 @@ public class SimulationServlet extends WebSocketServlet {
 				}
 
 				Gson gson = new Gson();
-				sb.append("[" + gson.toJson(xDataset) + ","
-							  + gson.toJson(yDataset) + "]"); // Put both objects in n
-														// array of 2 elements
-
+				// Put both objects in n array of 2 elements
+				sb.append("[" + gson.toJson(xDataset) + "," + gson.toJson(yDataset) + "]");
 			}
-
-//
-//			if (iterator.hasNext()) {
-//				sb.append(',');
-//			}
 		}
 		
 		sendUpdate(sb.toString());
