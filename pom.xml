@@ -2,15 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.openworm.simulationengine.samplesimulation</groupId>
-	<artifactId>org.openworm.simulationengine.samplesimulation</artifactId>
-	<name>org.openworm.simulationengine.samplesimulation</name>
-	<packaging>war</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<groupId>org.openworm</groupId>
+	<artifactId>simulationengine.samplesimulation</artifactId>
+	<name>OpenWorm Simulation Engine Sample Simulation Bundle (Neuronal)</name>
+	<packaging>bundle</packaging>
+	<version>1.0.0</version>
 	<properties>
-		<spring.version>2.5.6.A</spring.version>
-		<security.version>2.0.4.A</security.version>
-		<webflow.version>2.0.5.RELEASE</webflow.version>
+		<spring.version>3.0.0.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,16 +22,16 @@
 			<artifactId>junit</artifactId>
 			<version>4.5</version>
 		</dependency>
-<dependency>
-	<groupId>org.apache.tomcat</groupId>
-	<artifactId>tomcat-catalina</artifactId>
-	<version>7.0.29</version>
-</dependency>
-<dependency>
-	<groupId>org.apache.tomcat</groupId>
-	<artifactId>tomcat-coyote</artifactId>
-	<version>7.0.29</version>
-</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>7.0.29</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>com.springsource.javax.servlet.jsp.jstl</artifactId>
@@ -46,10 +44,10 @@
 			<artifactId>gson</artifactId>
 			<version>2.1</version>
 		</dependency>
-    		<dependency>
-			<groupId>org.openworm.simulationengine.core</groupId>
-			<artifactId>org.openworm.simulationengine.core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+		<dependency>
+			<groupId>org.openworm</groupId>
+			<artifactId>simulationengine.core</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
@@ -58,50 +56,9 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.aopalliance</groupId>
-			<artifactId>com.springsource.org.aopalliance</artifactId>
-			<version>1.0.0</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>com.springsource.org.apache.commons.logging</artifactId>
 			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.taglibs</groupId>
-			<artifactId>com.springsource.org.apache.taglibs.standard</artifactId>
-			<version>1.1.2</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>com.springsource.org.apache.tiles</artifactId>
-			<version>2.0.5</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>com.springsource.org.apache.tiles.core</artifactId>
-			<version>2.0.5.osgi</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>com.springsource.org.apache.tiles.jsp</artifactId>
-			<version>2.0.5</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>com.springsource.org.hibernate</artifactId>
-			<version>3.2.6.ga</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.el</groupId>
-			<artifactId>com.springsource.org.jboss.el</artifactId>
-			<version>2.0.0.GA</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -115,25 +72,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.aop</artifactId>
-			<version>${spring.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.context</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.orm</artifactId>
-			<version>${spring.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -150,29 +90,6 @@
 			<artifactId>org.springframework.web.servlet</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>org.springframework.security</artifactId>
-			<version>${security.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>org.springframework.security.taglibs</artifactId>
-			<version>${security.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.webflow</groupId>
-			<artifactId>org.springframework.js</artifactId>
-			<version>${webflow.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.webflow</groupId>
-			<artifactId>org.springframework.webflow</artifactId>
-			<version>${webflow.version}</version>
-		</dependency>
-		<!-- Container-provided dependencies -->
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>com.springsource.javax.el</artifactId>
@@ -191,7 +108,6 @@
 			<version>2.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.apache.log4j</groupId>
 			<artifactId>com.springsource.org.apache.log4j</artifactId>
@@ -199,35 +115,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>com.springsource.org.easymock</artifactId>
-			<version>2.3.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>com.springsource.org.hsqldb</artifactId>
-			<version>1.8.0.9</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.test</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- dm Server library definitions -->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>org.apache.tiles-library</artifactId>
-			<type>libd</type>
-			<version>2.0.5.osgi</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.webflow</groupId>
-			<artifactId>org.springframework.webflow-library</artifactId>
-			<type>libd</type>
-			<version>${webflow.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit</groupId>
@@ -286,8 +177,27 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>src/main/webapp/META-INF</manifestLocation>
+					<supportedProjectTypes>
+						<supportedProjectType>war</supportedProjectType>
+						<supportedProjectType>bundle</supportedProjectType>
+					</supportedProjectTypes>
+					<instructions>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Import-Package>org.eclipse.virgo.web.dm;version="2.1.1.RELEASE",*</Import-Package>
+						<Import-Library>org.springframework.spring;version="${spring.version}"</Import-Library>
+					</instructions>
 				</configuration>
 			</plugin>
 			<plugin>
