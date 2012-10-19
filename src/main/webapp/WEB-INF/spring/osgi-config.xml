@@ -9,6 +9,6 @@
 
 	<!-- Exports the service implementation to other bundles by its service interface -->
 
-	<osgi:reference id="sampleSimulatorService" interface="org.openworm.simulationengine.core.simulator.ISimulator" />
+	<osgi:reference bean-name="sampleSimulatorService" id="SampleSimulator" interface="org.openworm.simulationengine.core.simulator.ISimulator" />
 	 
 </beans>
