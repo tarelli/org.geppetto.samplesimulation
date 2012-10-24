@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1350560937492
+Bnd-LastModified: 1351091683038
 Build-Jdk: 1.6.0_35
-Built-By: matteocantarelli
+Built-By: giovanniidili
 Bundle-ManifestVersion: 2
 Bundle-Name: OpenWorm Simulation Engine Sample Simulation Bundle (Neuron
  al)
