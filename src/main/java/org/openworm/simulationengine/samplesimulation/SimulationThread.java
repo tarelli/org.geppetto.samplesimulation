@@ -1,5 +1,6 @@
 package org.openworm.simulationengine.samplesimulation;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,10 +10,11 @@ import org.openworm.simulationengine.core.model.HHModel;
 import org.openworm.simulationengine.core.model.IModel;
 import org.openworm.simulationengine.core.simulation.ISimulation;
 import org.openworm.simulationengine.core.simulation.ISimulationCallbackListener;
+import org.openworm.simulationengine.core.simulation.ISimulatorCallbackListener;
 import org.openworm.simulationengine.core.simulation.TimeConfiguration;
 import org.openworm.simulationengine.core.simulator.ISimulator;
 
-class SimulationThread extends Thread implements ISimulation, ISimulationCallbackListener {
+class SimulationThread extends Thread implements ISimulation, ISimulatorCallbackListener {
 
 	private static Log logger = LogFactory.getLog(SimulationThread.class);
 
@@ -118,5 +120,12 @@ class SimulationThread extends Thread implements ISimulation, ISimulationCallbac
 				logger.debug("end simulation");
 			}
 		}
+	}
+
+	@Override
+	public void init(URL simConfigURL, ISimulationCallbackListener simulationListener)
+	{
+		// NOT USED HERE
+		
 	}
 }
