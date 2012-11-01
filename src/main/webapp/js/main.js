@@ -9,8 +9,7 @@
 var Simulation = {};
 
 Simulation.initialize = function() {
-	Simulation
-			.connect('ws://' + window.location.host + '/org.openworm.simulationengine.samplesimulation/SimulationServlet');
+	Simulation.connect('ws://' + window.location.host + '/org.openworm.simulationengine.samplesimulation/SimulationServlet');
 };
 
 Simulation.setCurrent = function(current) {
