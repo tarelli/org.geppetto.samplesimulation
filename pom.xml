@@ -5,7 +5,7 @@
 	<groupId>org.openworm</groupId>
 	<artifactId>simulationengine.samplesimulation</artifactId>
 	<name>OpenWorm Simulation Engine Sample Simulation Bundle (Neuronal)</name>
-	<packaging>bundle</packaging>
+	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<properties>
 		<spring.version>3.0.0.RELEASE</spring.version>
@@ -171,8 +171,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -199,6 +197,16 @@
 						<Import-Library>org.springframework.spring;version="${spring.version}"</Import-Library>
 					</instructions>
 				</configuration>
+				<executions>
+					<execution>
+						<id>bundle</id>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
