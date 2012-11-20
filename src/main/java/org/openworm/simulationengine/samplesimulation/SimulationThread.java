@@ -145,4 +145,11 @@ class SimulationThread extends Thread implements ISimulation, ISimulatorCallback
 		// NOT USED HERE
 		
 	}
+
+	@Override
+	public void reset()
+	{
+		// NOT USED HERE
+		
+	}
 }
