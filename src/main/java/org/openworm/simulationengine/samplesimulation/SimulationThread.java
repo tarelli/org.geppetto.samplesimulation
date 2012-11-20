@@ -14,10 +14,8 @@ import org.openworm.simulationengine.core.simulation.ISimulatorCallbackListener;
 import org.openworm.simulationengine.core.simulation.TimeConfiguration;
 import org.openworm.simulationengine.core.simulator.ISimulator;
 
-
 class SimulationThread extends Thread implements ISimulation, ISimulatorCallbackListener
 {
-
 
 	private static Log logger = LogFactory.getLog(SimulationThread.class);
 
@@ -143,6 +141,11 @@ class SimulationThread extends Thread implements ISimulation, ISimulatorCallback
 	public void init(URL simConfigURL, ISimulationCallbackListener simulationListener)
 	{
 		// NOT USED HERE
-		
+	}
+
+	@Override
+	public void reset()
+	{
+		// NOT USED HERE
 	}
 }
