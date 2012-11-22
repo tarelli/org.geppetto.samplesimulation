@@ -210,6 +210,7 @@ public class SimulationServlet extends WebSocketServlet
 		{
 			_sessionContext._models = null;
 			_sessionContext._processedElements = 0;
+			_sessionContext._externalCurrent = 0.0f;
 		}
 
 	}
