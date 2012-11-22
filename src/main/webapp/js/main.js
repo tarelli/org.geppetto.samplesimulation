@@ -5,6 +5,9 @@
  * @author giovanni@openworm.org (Giovanni Idili)
  */
 
+// CONSTANTS
+var DEFAULT_CURRENT_VALUE = '3';
+
 // WEBSOCKET
 var Simulation = {};
 
@@ -26,6 +29,11 @@ Simulation.stop = function() {
 Simulation.start = function() {
 	Simulation.socket.send("start");
 	Console.log('Sent: Start simulation');
+};
+
+Simulation.reset = function() {
+	Simulation.socket.send("reset");
+	Console.log('Sent: Reset simulation');
 };
 
 Simulation.connect = (function(host) {
@@ -66,8 +74,7 @@ Console.log = (function(message) {
 	console.scrollTop = console.scrollHeight;
 });
 
-// END_WEB_SOCKET
-
+// APPLICATION LOGIC
 var plot = null;
 var flotOptions = {
 	yaxis : {
@@ -127,9 +134,11 @@ $(document).ready(function() {
 	});
 
 	$('#stop').attr('disabled', 'disabled');
+	$('#reset').attr('disabled', 'disabled');
 
 	$('#start').click(function() {
 		$('#start').attr('disabled', 'disabled');
+		$('#reset').attr('disabled', 'disabled');
 		$('#stop').removeAttr('disabled');
 		$('#imageHH').attr('style', 'visibility:visible');
 		Simulation.start();
@@ -137,8 +146,20 @@ $(document).ready(function() {
 
 	$('#stop').click(function() {
 		$('#start').removeAttr('disabled');
+		$('#reset').removeAttr('disabled');
 		$('#stop').attr('disabled', 'disabled');
 		Simulation.stop();
+	});
+	
+	$('#reset').click(function() {
+		$('#start').removeAttr('disabled');
+		$('#reset').attr('disabled', 'disabled');
+		$('#stop').attr('disabled', 'disabled');
+		
+		// reset current to default value
+		$("#current").val(DEFAULT_CURRENT_VALUE);
+		
+		Simulation.reset();
 	});
 
 });

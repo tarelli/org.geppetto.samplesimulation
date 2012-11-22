@@ -22,16 +22,18 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.apache.catalina.websocket.WsOutbound;
 import org.openworm.simulationengine.core.model.HHModel;
 import org.openworm.simulationengine.core.simulator.ISimulator;
+import org.openworm.simulationengine.simulation.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.gson.Gson;
 
-public class SimulationServlet extends WebSocketServlet {
-	
+public class SimulationServlet extends WebSocketServlet
+{
+
 	@Autowired
 	public SimulationConfig config;
-	
+
 	@Autowired
 	public ISimulator sampleSimulatorService;
 
@@ -39,47 +41,64 @@ public class SimulationServlet extends WebSocketServlet {
 
 	private static final long UPDATE_CYCLE = 100;
 
-	private final Timer _simTimer = new Timer(SimulationServlet.class.getSimpleName() + " Timer");
-
 	private final AtomicInteger _connectionIds = new AtomicInteger(0);
 
 	private final ConcurrentHashMap<Integer, SessionContext> _simulations = new ConcurrentHashMap<Integer, SessionContext>();
 
 	private final ConcurrentHashMap<Integer, SimDataInbound> _connections = new ConcurrentHashMap<Integer, SimDataInbound>();
 
+	private Timer _simTimer;
+
 	@Override
-	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request) {
+	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request)
+	{
 		return new SimDataInbound(_connectionIds.incrementAndGet());
 	}
 
 	@Override
-	public void init() throws ServletException {
+	public void init() throws ServletException
+	{
 		super.init();
-	    SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-		_simTimer.scheduleAtFixedRate(new TimerTask() {
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+	}
+
+	private void startClientUpdateTimer()
+	{
+		_simTimer = new Timer(SimulationServlet.class.getSimpleName() + " - Timer - " + new java.util.Date().getTime());
+		_simTimer.scheduleAtFixedRate(new TimerTask()
+		{
 			@Override
-			public void run() {
-				try {
+			public void run()
+			{
+				try
+				{
 					update();
-				} catch (RuntimeException e) {
+				}
+				catch (RuntimeException e)
+				{
 					// log.error("Caught to prevent timer from shutting down", e);
 				}
 			}
 		}, UPDATE_CYCLE, UPDATE_CYCLE);
 	}
 
-	private void update() {
+	private void update()
+	{
 		StringBuilder sb = new StringBuilder();
-		for (Iterator<SessionContext> iterator = getSimulations().iterator(); iterator.hasNext();) {
+		for (Iterator<SessionContext> iterator = getSimulations().iterator(); iterator.hasNext();)
+		{
 			SessionContext simulation = iterator.next();
 
-			if (simulation._models != null) {
+			if (simulation._models != null)
+			{
 				List<Float> xDataset = new ArrayList<Float>();
 				List<Float> yDataset = new ArrayList<Float>();
 
-				for (int t = 0; t < simulation._models.get("0").size(); t++) {
+				for (int t = 0; t < simulation._models.get("0").size(); t++)
+				{
 					// plot from 0
-					if ((t * simulation._timeConfiguration.getTimeStepLength()) >= 0) {
+					if ((t * simulation._timeConfiguration.getTimeStepLength()) >= 0)
+					{
 						xDataset.add(t * config.getSamplingPeriod() * simulation._timeConfiguration.getTimeStepLength());
 						yDataset.add(((HHModel) simulation._models.get("0").get(t)).getV());
 					}
@@ -90,41 +109,51 @@ public class SimulationServlet extends WebSocketServlet {
 				sb.append("[" + gson.toJson(xDataset) + "," + gson.toJson(yDataset) + "]");
 			}
 		}
-		
+
 		sendUpdate(sb.toString());
 	}
 
-	private void sendUpdate(String message) {
-		for (SimDataInbound connection : getConnections()) {
-			try {
+	private void sendUpdate(String message)
+	{
+		for (SimDataInbound connection : getConnections())
+		{
+			try
+			{
 				CharBuffer buffer = CharBuffer.wrap(message);
 				connection.getWsOutbound().writeTextMessage(buffer);
-			} catch (IOException ignore) {
+			}
+			catch (IOException ignore)
+			{
 				// Ignore
 			}
 		}
 	}
 
-	private Collection<SimDataInbound> getConnections() {
+	private Collection<SimDataInbound> getConnections()
+	{
 		return Collections.unmodifiableCollection(_connections.values());
 	}
 
-	private Collection<SessionContext> getSimulations() {
+	private Collection<SessionContext> getSimulations()
+	{
 		return Collections.unmodifiableCollection(_simulations.values());
 	}
 
-	private final class SimDataInbound extends MessageInbound {
+	private final class SimDataInbound extends MessageInbound
+	{
 
 		private final int id;
 		private SessionContext _sessionContext;
 
-		private SimDataInbound(int id) {
+		private SimDataInbound(int id)
+		{
 			super();
 			this.id = id;
 		}
 
 		@Override
-		protected void onOpen(WsOutbound outbound) {
+		protected void onOpen(WsOutbound outbound)
+		{
 			_sessionContext = new SessionContext();
 			_simulations.put(Integer.valueOf(id), _sessionContext);
 			_connections.put(Integer.valueOf(id), this);
@@ -133,27 +162,55 @@ public class SimulationServlet extends WebSocketServlet {
 		}
 
 		@Override
-		protected void onClose(int status) {
+		protected void onClose(int status)
+		{
 			_simulations.remove(Integer.valueOf(id));
 			_connections.remove(Integer.valueOf(id));
 		}
 
 		@Override
-		protected void onBinaryMessage(ByteBuffer message) throws IOException {
+		protected void onBinaryMessage(ByteBuffer message) throws IOException
+		{
 			throw new UnsupportedOperationException("Binary message not supported.");
 		}
 
 		@Override
-		protected void onTextMessage(CharBuffer message) throws IOException {
+		protected void onTextMessage(CharBuffer message) throws IOException
+		{
 			String msg = message.toString();
-			if (msg.equals("start")) {
+			if (msg.equals("start"))
+			{
+				_sessionContext._runSimulation = true;
 				new SimulationThread(_sessionContext, config, sampleSimulatorService).start();
-			} else if (msg.equals("stop")) {
+				startClientUpdateTimer();
+			}
+			else if (msg.equals("stop"))
+			{
 				_sessionContext._runSimulation = false;
-				_sessionContext._runningCycle = false;
-			} else {
+				_simTimer.cancel();
+			}
+			else if (msg.equals("reset"))
+			{
+				// stop simulation in case it's running
+				if (_sessionContext._runSimulation)
+				{
+					_sessionContext._runSimulation = false;
+					_simTimer.cancel();
+				}
+
+				// reset simulation parameters
+				resetSimulationParams();
+			}
+			else
+			{
 				_sessionContext.setCurrent(Float.valueOf(msg));
 			}
+		}
+
+		private void resetSimulationParams()
+		{
+			_sessionContext._models = null;
+			_sessionContext._processedElements = 0;
 		}
 
 	}

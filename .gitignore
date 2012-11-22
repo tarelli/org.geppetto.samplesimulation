@@ -1,3 +1,4 @@
 /target
 src/main/webapp/META-INF/MANIFEST.MF
+src/main/webapp/META-INF
 *.DS_Store

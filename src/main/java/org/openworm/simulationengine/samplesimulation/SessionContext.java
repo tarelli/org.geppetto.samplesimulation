@@ -9,18 +9,23 @@ import org.openworm.simulationengine.core.simulation.ITimeConfiguration;
 
 public class SessionContext
 {
+	/*
+	 * Simulation parameters
+	 */
 	public ITimeConfiguration _timeConfiguration = null;
-
-	public Map<String, List<IModel>> _models;
-
-	// the external current is only temporary stored here, it should be part of
-	// the model
+	// the external current is only temporary stored here, it should be part of the model
 	public Float _externalCurrent;
-
+	
+	/*
+	 * Properties with stored simulation results
+	 */
+	public Map<String, List<IModel>> _models;
 	public int _processedElements = 0;
 
+	/*
+	 * Simulation flags
+	 */
 	public boolean _runningCycle = false;
-
 	public boolean _runSimulation = false;
 
 	public SessionContext()

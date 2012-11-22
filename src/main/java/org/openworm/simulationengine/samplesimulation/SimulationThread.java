@@ -95,8 +95,6 @@ class SimulationThread extends Thread implements ISimulation, ISimulatorCallback
 
 	public void run()
 	{
-		getSessionContext()._runSimulation = true;
-
 		while (getSessionContext()._runSimulation)
 		{
 			if (!getSessionContext()._runningCycle)
