@@ -22,7 +22,6 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.apache.catalina.websocket.WsOutbound;
 import org.openworm.simulationengine.core.model.HHModel;
 import org.openworm.simulationengine.core.simulator.ISimulator;
-import org.openworm.simulationengine.simulation.SimulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
