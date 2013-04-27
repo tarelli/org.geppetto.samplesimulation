@@ -1,4 +1,4 @@
-package org.openworm.simulationengine.samplesimulation;
+package org.geppetto.samplesimulation;
 
 public class SimulationConfig {
 	

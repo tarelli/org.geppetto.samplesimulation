@@ -7,9 +7,9 @@
 							http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	
 	<!-- Scans the implementation package for module @Components to install and configure -->
-	<context:component-scan base-package="org.openworm.simulationengine.samplesimulation" />
+	<context:component-scan base-package="org.geppetto.samplesimulation" />
 
-	<bean id="config" class="org.openworm.simulationengine.samplesimulation.SimulationConfig">
+	<bean id="config" class="org.geppetto.samplesimulation.SimulationConfig">
 		<!-- how many neurons will be simulated in parallel -->
 		<property name="elemCount" value="30" />
 		<!-- how many steps the GPU will run per cycle before returning results -->
