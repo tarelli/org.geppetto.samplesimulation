@@ -1,11 +1,11 @@
-package org.openworm.simulationengine.samplesimulation;
+package org.geppetto.samplesimulation;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.websocket.WsOutbound;
-import org.openworm.simulationengine.core.model.IModel;
-import org.openworm.simulationengine.core.simulation.ITimeConfiguration;
+import org.geppetto.core.model.IModel;
+import org.geppetto.core.simulation.ITimeConfiguration;
 
 public class SessionContext
 {

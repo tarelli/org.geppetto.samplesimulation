@@ -1,4 +1,4 @@
-package org.openworm.simulationengine.samplesimulation;
+package org.geppetto.samplesimulation;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openworm.simulationengine.core.model.HHModel;
-import org.openworm.simulationengine.core.model.IModel;
-import org.openworm.simulationengine.core.simulation.ISimulation;
-import org.openworm.simulationengine.core.simulation.ISimulationCallbackListener;
-import org.openworm.simulationengine.core.simulation.ISimulatorCallbackListener;
-import org.openworm.simulationengine.core.simulation.TimeConfiguration;
-import org.openworm.simulationengine.core.simulator.ISimulator;
+import org.geppetto.core.model.HHModel;
+import org.geppetto.core.model.IModel;
+import org.geppetto.core.simulation.ISimulation;
+import org.geppetto.core.simulation.ISimulationCallbackListener;
+import org.geppetto.core.simulation.ISimulatorCallbackListener;
+import org.geppetto.core.simulation.TimeConfiguration;
+import org.geppetto.core.simulator.ISimulator;
 
 class SimulationThread extends Thread implements ISimulation, ISimulatorCallbackListener
 {
@@ -41,7 +41,7 @@ class SimulationThread extends Thread implements ISimulation, ISimulatorCallback
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.openworm.simulationengine.core.simulation.ISimulationCallbackListener
+	 * org.geppetto.core.simulation.ISimulationCallbackListener
 	 * #resultReady(java.util.List)
 	 */
 	@Override

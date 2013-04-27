@@ -1,4 +1,4 @@
-package org.openworm.simulationengine.samplesimulation;
+package org.geppetto.samplesimulation;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -20,8 +20,8 @@ import org.apache.catalina.websocket.MessageInbound;
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WebSocketServlet;
 import org.apache.catalina.websocket.WsOutbound;
-import org.openworm.simulationengine.core.model.HHModel;
-import org.openworm.simulationengine.core.simulator.ISimulator;
+import org.geppetto.core.model.HHModel;
+import org.geppetto.core.simulator.ISimulator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
